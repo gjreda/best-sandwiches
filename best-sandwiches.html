@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100%; }
+  body { height: 100%; margin: 0; padding: 0; }
+  #map_canvas {
+  	height: 90%;
+  }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+var tableid = "1eR_sZ3BSXJJvh5JHA3zdyPWjcSaR8io_X9Zp2pQ";
+var initialLocation;
+var initialMarker;
+// var browserSupportFlag = new Boolean();
+var title = document.createElement("DIV");
+var infowindow = new google.maps.InfoWindow({ content: content });
+
+function initialize() {
+	var styles = [
+					{
+					"stylers": [
+					      { "weight": 0.4 },
+					      { "lightness": -2 },
+					      { "gamma": 0.86 },
+					      { "hue": "#ff9100" },
+					      { "saturation": -79 },
+					      { "visibility": "on" },
+					      { "invert_lightness": true }
+						]
+					}
+				]
+
+	var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+
+	var mapOptions = {
+		center: new google.maps.LatLng(41.881944, -87.627778),
+		zoom: 10,
+		disableDefaultUI: true,
+		zoomControl: true,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_CENTER
+		},
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	// Geolocate
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			initialMarker = new google.maps.Marker({
+				position: initialLocation,
+				map: map,
+				title: "You're here"
+			});
+			map.setCenter(initialLocation);
+			map.setZoom(15);
+		})
+	}
+
+	// function openInfoWindow(marker) {
+	// 	title.innerHTML = marker.getTItle();
+	// 	pin.set("position", marker.getPosition());
+	// 	infowindow.open(map, marker);
+	// }
+
+	// google.maps.event.addListener(initialMarker, 'click', function() {
+	// 	openInfoWindow(initialMarker);
+	// });
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	map.mapTypes.set("map_style", styledMap);
+	map.setMapTypeId("map_style");
+
+	var layer = new google.maps.FusionTablesLayer(tableid);
+	layer.setQuery("SELECT 'lat_lng' FROM " + tableid);
+	layer.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas"></div>
+<script type="text/javascript">
+</script>
+</body>
+</html>
