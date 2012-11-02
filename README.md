@@ -3,9 +3,7 @@ Chicago Magazine's 50 Best Sandwiches
 
 About
 -------
-[Chicago Magazine](http://www.chicagomag.com) recently released their list of [Chicago's 50 best sandwiches](http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/).  I thought it'd be a good reason to learn a little bit more about the Google Maps API, so I made a map.
-
-Besides, everyone likes a good sandwich, right?
+[Chicago Magazine](http://www.chicagomag.com) recently released their list of [Chicago's 50 best sandwiches](http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/).  I thought it'd be a good reason to learn a little bit more about the Google Maps API, so I made a map (albeit pretty quickly).  The map can be seen [here](http://www.gregreda.com/best-sandwiches.html).
 
 How?
 -----
@@ -15,3 +13,7 @@ How?
 4. Convert the spreadsheet to a Google Fusion Table.  Make it publicly available (at least so that people "with the link" can view it).
 5. Use some Javascript and the Google Maps v3 API to make a map.
 6. Style the map with the [Google's Styled Map Wizard](http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html).
+
+Notes
+--------
+The code uses geolocation so that you can easily see if you're near any of the places.  Note that if you let your browser geolocate you and you're not in Chicago, this is going to be a pretty boring map.  It also works pretty well through your mobile phone's browser.
