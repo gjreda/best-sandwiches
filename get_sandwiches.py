@@ -27,7 +27,7 @@ with open("data/src-best-sandwiches.tsv", "w") as f:
         page = urlopen("http://www.chicagomag.com{0}".format(url))
         soup = BeautifulSoup(page.read()).find("div", {"id": "sandwich"})
         rank = soup.find("div", {"id": "sandRank"}).encode_contents().strip()
-        sandwich = soup.h1.encode_contents().strip().split("<br />")[0]
+        sandwich = soup.h1.encode_contents().strip().split("<br/>")[0]
         restaurant = soup.h1.span.encode_contents()
         description = soup.p.encode_contents().strip()
         addy = soup.find("p", "addy").em.encode_contents().split(",")[0].strip()
