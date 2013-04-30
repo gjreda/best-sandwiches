@@ -12,14 +12,16 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript">
-var tableid = "1eR_sZ3BSXJJvh5JHA3zdyPWjcSaR8io_X9Zp2pQ";
+// Variables
+var tableid = "1HBJQeRQSN-MygxGmAZ9BeILrv9D6UedMj5sqLz0";
 var initialLocation;
 var initialMarker;
-// var browserSupportFlag = new Boolean();
 var title = document.createElement("DIV");
 var infowindow = new google.maps.InfoWindow({ content: content });
 
+// Initialize map
 function initialize() {
+	// Style from the Google Maps Style Wizard
 	var styles = [
 					{
 					"stylers": [
@@ -36,6 +38,7 @@ function initialize() {
 
 	var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
 
+	// Map settings
 	var mapOptions = {
 		center: new google.maps.LatLng(41.881944, -87.627778),
 		zoom: 10,
@@ -47,7 +50,8 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
-	// Geolocate
+	// Geolocate - in case someone wants to find out if they're near some delicious sandwiches
+	// Trust me, it's useful for when you're wandering around Chicago
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -61,22 +65,13 @@ function initialize() {
 		})
 	}
 
-	// function openInfoWindow(marker) {
-	// 	title.innerHTML = marker.getTItle();
-	// 	pin.set("position", marker.getPosition());
-	// 	infowindow.open(map, marker);
-	// }
-
-	// google.maps.event.addListener(initialMarker, 'click', function() {
-	// 	openInfoWindow(initialMarker);
-	// });
-
 	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	map.mapTypes.set("map_style", styledMap);
 	map.setMapTypeId("map_style");
 
+	// Select our data points using SQL-like syntax courtesy of the Google FT API
 	var layer = new google.maps.FusionTablesLayer(tableid);
-	layer.setQuery("SELECT 'lat_lng' FROM " + tableid);
+	layer.setQuery("SELECT 'lat', 'lng' FROM " + tableid);
 	layer.setMap(map);
 }
 
