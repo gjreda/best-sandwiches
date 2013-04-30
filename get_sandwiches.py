@@ -3,6 +3,7 @@
 # 2012.10.14
 # Get Chicago Magazine's list of the 50 best sandwiches in Chicago
 # Source: http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/
+# Blog: http//www.gregreda.com/2013/04/29/more-web-scraping-with-python/
 
 from BeautifulSoup import BeautifulSoup
 from urllib2 import urlopen
@@ -15,7 +16,7 @@ soup = BeautifulSoup(urlopen(base_url).read())
 sammies = soup.findAll("div", "sammy")
 sammy_urls = [div.a["href"] for div in sammies]
 
-with open("./best-sandwiches.tsv", "w") as f:
+with open("/src-best-sandwiches.tsv", "w") as f:
     fieldnames = ("rank", "sandwich", "restaurant", "description", "price",
                     "address", "phone", "website")
     output = csv.writer(f, delimiter="\t")
