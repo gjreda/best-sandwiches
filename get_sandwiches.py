@@ -13,7 +13,7 @@ base_url = ("http://www.chicagomag.com/Chicago-Magazine/"
             "November-2012/Best-Sandwiches-Chicago/")
 
 soup = BeautifulSoup(urlopen(base_url).read())
-sammies = soup.findAll("div", "sammy")
+sammies = soup.find_all("div", "sammy")
 sammy_urls = [div.a["href"] for div in sammies]
 
 with open("/src-best-sandwiches.tsv", "w") as f:
@@ -27,16 +27,16 @@ with open("/src-best-sandwiches.tsv", "w") as f:
         page = urlopen("http://www.chicagomag.com{0}".format(url))
         soup = BeautifulSoup(page.read()).find("div", {"id": "sandwich"})
 
-        rank = soup.find("div", {"id": "sandRank"}).renderContents().strip()
-        sandwich = soup.h1.renderContents().strip().split("<br />")[0]
-        restaurant = soup.h1.span.renderContents()
-        description = soup.p.renderContents().strip()
-        addy = soup.find("p", "addy").em.renderContents().split(",")[0].strip()
+        rank = soup.find("div", {"id": "sandRank"}).render_contents().strip()
+        sandwich = soup.h1.render_contents().strip().split("<br />")[0]
+        restaurant = soup.h1.span.render_contents()
+        description = soup.p.render_contents().strip()
+        addy = soup.find("p", "addy").em.render_contents().split(",")[0].strip()
         price = addy.partition(" ")[0].strip()
         address = addy.partition(" ")[2].strip()
-        phone = soup.find("p", "addy").em.renderContents().split(",")[1].strip()
+        phone = soup.find("p", "addy").em.render_contents().split(",")[1].strip()
         if soup.find("p", "addy").em.a:
-            website = soup.find("p", "addy").em.a.renderContents()
+            website = soup.find("p", "addy").em.a.render_contents()
         else:
             website = ""
 
