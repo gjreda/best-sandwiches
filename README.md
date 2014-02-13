@@ -3,7 +3,7 @@ Chicago Magazine's 50 Best Sandwiches
 
 About
 -------
-[Chicago Magazine](http://www.chicagomag.com) released their list of [Chicago's 50 best sandwiches](http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/).  I thought it'd be a good reason to learn a little bit more about the Google Maps API, so I made a map (albeit pretty quickly).  The map can be seen [here](http://www.gregreda.com/2013/05/06/more-web-scraping-with-python/).
+[Chicago Magazine](http://www.chicagomag.com) released their list of [Chicago's 50 best sandwiches](http://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/).  I thought it'd be a good reason to learn a little bit more about the Google Maps API, so I made a map (albeit pretty quickly).  The map can be seen [here](www.gregreda.com/best-sandwiches.html).
 
 How?
 -----
@@ -16,4 +16,4 @@ How?
 
 Notes
 --------
-For those interested, I wrote a [detailed post](http://www.gregreda.com/2013/04/29/more-web-scraping-with-python/) on my blog about the process.
+For those interested, I wrote a [detailed post](http://www.gregreda.com/2013/05/06/more-web-scraping-with-python/) on my blog about the process.
